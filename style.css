@@ -1,0 +1,294 @@
+/* =============================================
+   NETFLIX CLONE — style.css
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Netflix+Sans:wght@400;700&display=swap');
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --netflix-red:   #e50914;
+  --netflix-red-hover: #f6121d;
+  --white:         #ffffff;
+  --light-gray:    #b3b3b3;
+  --dark-overlay:  rgba(0, 0, 0, 0.55);
+  --input-bg:      rgba(22, 22, 22, 0.70);
+  --border-color:  rgba(255, 255, 255, 0.25);
+  --font:          'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: var(--font);
+  background: #000;
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- HEADER ---------- */
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+header > div > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%);
+}
+
+/* Netflix Logo */
+header > div > header img {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  /* Red tint filter so any placeholder logo looks branded */
+  filter: drop-shadow(0 0 2px rgba(229, 9, 20, 0.4));
+}
+
+/* Sign In Button */
+header > div > header button {
+  background: var(--netflix-red);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: var(--font);
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  text-transform: capitalize;
+  transition: background 0.15s ease;
+}
+
+header > div > header button:hover {
+  background: var(--netflix-red-hover);
+}
+
+/* ---------- HERO SECTION ---------- */
+main > section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 140px 20px 80px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Background image sits behind everything */
+main > section > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 0;
+  /* pull from correct path — update if needed */
+  content: url('/bg.jpg');
+}
+
+/* Dark overlay on top of bg image */
+main > section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to bottom,
+      rgba(0,0,0,0.6)  0%,
+      rgba(0,0,0,0.45) 35%,
+      rgba(0,0,0,0.45) 65%,
+      rgba(0,0,0,0.75) 100%
+    );
+}
+
+/* Bottom gradient line (Netflix signature) */
+main > section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(90deg, #e50914 0%, #b00000 50%, #e50914 100%);
+  z-index: 2;
+  opacity: 0.85;
+}
+
+/* All direct text children sit above the overlay */
+main > section > h1,
+main > section > h2,
+main > section > h3,
+main > section > form {
+  position: relative;
+  z-index: 2;
+}
+
+/* Headline */
+main > section > h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.15;
+  max-width: 680px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  margin-bottom: 16px;
+}
+
+/* Sub-headline */
+main > section > h2 {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+/* Body text */
+main > section > h3 {
+  font-size: clamp(0.85rem, 1.8vw, 1.15rem);
+  font-weight: 400;
+  color: var(--white);
+  max-width: 520px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+/* ---------- FORM ---------- */
+main > section > form {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 680px;
+}
+
+main > section > form span {
+  display: flex;
+}
+
+/* Hide the selector — not in the Netflix design */
+main > section > form span:first-child {
+  display: none;
+}
+
+/* Email input wrapper */
+main > section > form span:nth-child(2) {
+  flex: 1 1 320px;
+}
+
+/* Email Input */
+main > section > form input[type="email"] {
+  width: 100%;
+  height: 56px;
+  padding: 0 18px;
+  font-size: 1rem;
+  font-family: var(--font);
+  color: var(--white);
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px 0 0 4px;
+  outline: none;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.2s;
+}
+
+main > section > form input[type="email"]::placeholder {
+  color: var(--light-gray);
+}
+
+main > section > form input[type="email"]:focus {
+  border-color: rgba(255,255,255,0.55);
+}
+
+/* Get Started button wrapper */
+main > section > form span:nth-child(3) {
+  flex: 0 0 auto;
+}
+
+/* Get Started Button */
+main > section > form button[type="button"] {
+  height: 56px;
+  padding: 0 26px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: var(--font);
+  color: var(--white);
+  background: var(--netflix-red);
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.15s ease;
+}
+
+main > section > form button[type="submit"]:hover {
+  background: var(--netflix-red-hover);
+}
+
+/* Arrow chevron after "Get Started" */
+main > section > form button[type="submit"]::after {
+  content: '›';
+  font-size: 1.6rem;
+  line-height: 1;
+  margin-top: -2px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: rgba(0, 0, 0, 0.9);
+  color: var(--light-gray);
+  text-align: center;
+  padding: 28px 20px;
+  font-size: 0.85rem;
+  border-top: 1px solid #333;
+  letter-spacing: 0.3px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 640px) {
+  header > div > header {
+    padding: 14px 20px;
+  }
+
+  main > section > form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main > section > form span:nth-child(2),
+  main > section > form span:nth-child(3) {
+    width: 100%;
+  }
+
+  main > section > form input[type="email"] {
+    border-radius: 4px;
+  }
+
+  main > section > form button[type="submit"] {
+    width: 100%;
+    border-radius: 4px;
+    justify-content: center;
+  }
+}
