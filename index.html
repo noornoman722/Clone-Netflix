@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <header>
+        <div>
+            <header>
+                <img src="/logo.png" alt="" height="45">
+
+                <button type="button">sign in</button>
+            </header>
+        </div>
+    </header>
+    <main>
+        <section>
+            <!-- use the iamge/bg.jpg as background -->
+            <img src="/bg.jpg" alt="" height="1920" width="1080">
+            <h1>Unlimited movies, TV shows, and more</h1>
+            <h2>Starts at Rs 250. Cancel anytime.</h2>
+            <h3>Ready to watch? Enter Your email to create or restatrt your membershiop.</h3>
+            <form action="/submit.php">
+
+
+                <!-- Selector -->
+                <span>
+                    <select name="faltoo" id="faltoo">
+
+                        <option value="0" disabled selected>Select Type</option>
+                        <option value="1">Movie</option>
+                        <option value="2">TV Shows</option>
+                        <option value="3">More</option>
+                    </select>
+                </span>
+
+
+                <!-- Email Input -->
+                <span>
+                    <input type="email" id="email" placeholder="Email Address">
+                </span>
+
+
+                <!-- Get started Button -->
+                <span>
+                    <button type="button">Get Started</button>
+                </span>
+            </form>
+        </section>
+    </main>
+    <footer>
+        copyright &copy; | All rights reserved
+    </footer>
+</body>
+
+</html>
